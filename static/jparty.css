@@ -1,0 +1,264 @@
+.clue {
+  text-align: center;
+  height: 80px;
+  background: blue;
+  color: #e0b000;
+  font-weight: bold;
+  font-size: 18pt;
+  font-family: 'Oswald', sans-serif;
+  margin: 0px !important;
+  border: 1px solid white;
+}
+
+.clue:hover {
+  background: #e0b000;
+  color: blue;
+  font-weight: bold;
+  font-size: 18pt;
+  
+}
+
+tr.categories td {
+  width: 140px !important;
+  height: 140px;
+  text-align: center;
+  word-wrap: break-word;
+  border: 1px solid white;
+  border-bottom: 2px solid white;
+  font-family: 'Oswald', sans-serif;
+  font-size: 18pt;
+  color: #e0b000;
+  background: blue;
+  margin: 0px !important;
+}
+
+.game_container {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  text-align: center;
+  position: absolute;
+}
+
+.game_table {
+  position: absolute;
+}
+
+.next_button {
+  position: absolute;
+  height: auto;
+}
+
+.cat_cell {
+  color: yellow;
+  
+  padding: 5px;
+  margin: 0px !important;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+
+body {
+  /*background: #4c4b4c;*/
+  background: #1a1a1a;
+}
+
+input.date {
+  width: 250px;
+}
+
+/*.error_msg {
+  color: red;
+  font-weight: bold;
+}*/
+
+a.clear_err {
+  cursor: pointer;
+  /*z-index: 999;*/
+  top: 0px !important;
+  text-decoration: none;
+  border-bottom: 1px dotted black;
+}
+
+.display {
+  height: 100%;
+  margin-top: 40px;
+  display: block;
+  margin-left: 0% !important;
+}
+
+.q_display {
+  font-size: 16pt;
+  font-family: 'Oswald', sans-serif;
+  font-weight: lighter;
+  position: absolute;
+  text-align: center;
+  color: #e0b000;
+}
+
+.answer {
+  color: #e0b000;
+  position: absolute;
+  font-size: 16pt;
+  text-align: center;
+  text-transform: capitalize;
+  font-family: 'Oswald', sans-serif;
+  margin-top: 40px;
+}
+
+.show_ans {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: blue;
+  color: #e0b000;
+  font-size: 16pt;
+  line-height: 20pt;
+  border-radius: 10px;
+  border: 2px solid blue;
+  font-family: 'Oswald', sans-serif;
+  padding: 10px;
+}
+
+.show_ans:hover {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #e0b000;
+  color: blue;
+  font-size: 16pt;
+  line-height: 20pt;
+  border-radius: 10px;
+  border: 1px solid #e0b000;
+  padding: 10px;
+}
+
+button:active {
+  outline: none;
+  border: none;
+}
+
+button:focus {
+  outline:0;
+}
+
+.form_title {
+  border-bottom: 1px dotted #e0b000;
+  margin-bottom: 2px;
+  width: 400px;
+  color: #e0b000;
+  font-family: 'Oswald', sans-serif;
+}
+
+.date_form {
+  margin-bottom: 10px;
+}
+
+.search_categories {
+  margin-left: 5px;
+}
+
+.show_round {
+  margin-left: 5px;
+}
+
+select {
+  color: #e0b000;
+  background: blue;
+  border: none;
+  margin: 5px;
+  border-radius: none;
+}
+
+select:active {
+  outline: none;
+  border: none;
+}
+
+select:focus {
+  outline: none;
+  border: none;
+}
+
+input {
+  color: #e0b000;
+  background: blue;
+  border: none;
+  margin: 5px;
+}
+
+input.search {
+  width: 300px;
+  line-height: 14pt;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+}
+
+input:active {
+  outline: none;
+  border: none;  
+}
+
+button {
+  border: none;
+  border-radius: 0px;
+  background: blue;
+  color: #e0b000;
+  font-size: 16pt;
+  font-family: 'Oswald', sans-serif;
+}
+
+.search_results {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14pt;
+  color: #e0b000;
+}
+
+.search_results a {
+  text-decoration: none;
+  border-bottom: 1px dotted #e0b000;
+  cursor:pointer;
+  text-transform: capitalize;
+}
+
+.error_msg_div {
+  width: 100%;
+  text-align: center;
+  top: 0px !important;
+  position: absolute;
+  padding: 3px;
+  margin: 0px;
+  display: block;
+  overflow: hidden;
+  height: 30px;
+}
+
+.error_msg {
+  top: 0px !important;
+  position: fixed;
+  text-align: center;
+  font-size: 12pt;
+  color: black;
+  background: #ff6052;
+  width: auto;
+  padding: 0px 5px 0px 5px;
+  border-radius: 2px;
+  border: 1px black;
+  margin: 0px;
+}
+
+.controls {
+  display: block;
+  position: relative;
+}
+
+.clear_err {
+  color: blue;
+  text-decoration: none;
+  border-bottom: 1px dotted black;
+}

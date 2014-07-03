@@ -1,0 +1,63 @@
+<html>
+<head>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jparty.css') }}" />
+  <script src="{{url_for('static', filename='jparty.js')}}"></script>
+    <script type="text/javascript">
+    var req = $.ajax({url: "/dates"});
+    req.done(function(json) { 
+      var dates = $.parseJSON(json);
+      opts = '<div class="date_form">'
+        + '<p class="form_title">View games by date</p>'
+        + '<select class="date" value="">'
+        + '<option class="date">Select a date</option>'
+        + '{% for d in dates %}'
+        + '<option class="date" value="{{ d }}">{{ d }}</option>'
+        + '{% endfor %}</select>'
+        + '<select class="round">'
+        + '<option class="round" value="">Select a round</option>'
+        + '<option class="round" value="1">1</option>'
+        + '<option class="round" value="2">2</option>'
+        + '<option class="round" value="3">3</option>'
+        + '</select>'
+        + '<input class="show_round" type="submit" value="View round"></div>'
+      $(".controls").html(opts);
+      $(".controls").append('<div class="category_form">'
+        + '<p class="form_title">Search by category</p>'
+        + '<input type="text" class="search" value="Enter category search term"></input>'
+        + '<input class="search_categories" type="submit" value="Search">'
+        + '</div>');
+      // bind click functions for search/view buttons
+      $(".show_round").on("click", function() {
+        var date = $("option.date:selected").val();
+        var rnd = $("option.round:selected")[0].innerHTML;
+        showGame(date, rnd);
+      });
+      $(".search_categories").on("click", function() {
+        var query = $("input.search").val();
+        doSearch(query);
+      });
+      $("input.search").on("focus", function(){
+        if($(this).val() == "Enter category search term"){
+          $(this).val("");
+        }
+      });
+      $("input.search").on("blur", function() {
+        if($(this).val() == ""){
+          $(this).val("Enter category search term");
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="controls"></div>
+  <div class="error_msg_div" style="display: none;"><div class="error_msg"><a style="width: 100%" class="clear_err">Clear</a></div></div>
+  <div class="game_container" style="height: 100%; width: 100%"></div>
+  <!-- <div class="display"></div> -->
+    <!-- <div class="next_button"><button>Next</button</div> -->
+  </div>
+  <div class="search_results"></div>
+</body>
+</html>
