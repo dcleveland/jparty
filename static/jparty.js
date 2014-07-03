@@ -36,7 +36,7 @@ ROUND_SELECT_HTML = '<option class=round value="Select a round">'
 Object.size = function(o) {
   var s = 0, k;
   for (k in o) {
-    if (obj.hasOwnProperty(k)) {
+    if (o.hasOwnProperty(k)) {
       s++;
     }
   }
