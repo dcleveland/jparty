@@ -106,10 +106,16 @@ function clearError() {
   $(".error_msg").text("");
 }
 
+function clearData(element) {
+  var data = element.data(), i;
+
+
+}
 function doSearch(query) {
   // Function to get search results (ajax request), parse the JSON and display.
   // clear game table so that old clues doen't show up again.
   $(".game_table").html("");
+  $.removeData($(".game_container")[0]);
   if (query == "Enter category search term") {
     showSearchError();
     $(".error_msg_div").css("left", ($(window).width()
