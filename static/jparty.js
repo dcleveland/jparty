@@ -172,7 +172,7 @@ function drawCategoryGrid(grid, index, category) {
   var col_index = 1;
   for (col in clues) {
     var row_index = 1;
-    if (clues[col] == [[],[],[],[].[]]) {
+    if (clues[col] == {[],[],[],[].[]}) {
       $(".tr").filter("[data-col=" + col_index).hide();
       break;
     }
