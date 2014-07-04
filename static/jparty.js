@@ -172,23 +172,30 @@ function drawCategoryGrid(grid, index, category) {
   var col_index = 1;
   for (col in clues) {
     var row_index = 1;
-    if (clues[col] == {[],[],[],[].[]}) {
-      $(".tr").filter("[data-col=" + col_index).hide();
-      break;
-    }
     for (c in clues[col]) {
       var clue = clues[col][c];
       var cell = $("td.clue").filter('[data-row="' + row_index + '"][data-col="'
                                      + col_index + '"]')
-      if (clue) {
       cell.text("$" + clue[4]);
       cell.data("question", clue[2]);
       cell.data("answer", clue[3]);
       cell.data("data-dd=", clue[6]);  
-      }
       row_index += 1;
     };
     col_index += 1;
+  }
+  // Hide empty columns
+  $.each($("tr.cat_cell"), function(i, t) {
+    empty = 0;
+    $.each($("td.clue").filter('[data-col=' + i + ']'), funciton(j, d) {
+      if ($(this).innerHTML == '') {
+        empty++;
+      }
+    }
+    if (empty == 5) {
+      $("tr.cat_cell").filter('[data-col="' + i + '"]').hide();
+      $("td.clue").filter('[data-col="' + i + '"]').hide();
+    }
   }
   if ($(".game_container").data("grid_" + (index + 1))) {
     $(".next_button").show();
