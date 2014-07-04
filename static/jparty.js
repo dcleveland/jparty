@@ -108,6 +108,8 @@ function clearError() {
 
 function doSearch(query) {
   // Function to get search results (ajax request), parse the JSON and display.
+  // clear game table so that old clues doen't show up again.
+  $(".game_table").html("");
   if (query == "Enter category search term") {
     showSearchError();
     $(".error_msg_div").css("left", ($(window).width()
@@ -153,7 +155,7 @@ function drawCategoryGrid(grid, index, category) {
   ncols = clues.length
   var html = '<table class="game_table"><tr class="categories">';
   for (i=0; i<6; i++) {
-    html += '<td class="cat_cell" data-col="' + i + '">' + category + '</td>';
+    html += '<td class="cat_cell" data-col="' + (i+1) + '">' + category + '</td>';
   }
   html += "</tr>"
   // Draw all cells in a normal sized grid. We'll hide unused ones later.
@@ -184,19 +186,6 @@ function drawCategoryGrid(grid, index, category) {
     };
     col_index += 1;
   }
-  // Hide empty columns
-  $.each($("tr.cat_cell"), function(i, t) {
-    empty = 0;
-    $.each($("td.clue").filter('[data-col="' + i + '"]'), funciton(j, d) {
-      if ($(this).innerHTML == '') {
-        empty++;
-      }
-    }
-    if (empty == 5) {
-      $("tr.cat_cell").filter('[data-col="' + i + '"]').hide();
-      $("td.clue").filter('[data-col="' + i + '"]').hide();
-    }
-  }
   if ($(".game_container").data("grid_" + (index + 1))) {
     $(".next_button").show();
     $(".next_button").on("click", function() {
@@ -216,7 +205,24 @@ function drawCategoryGrid(grid, index, category) {
       $(this).data("dd", "0");
       $(this).text("Unpicked");
     }
-  })
+  });
+  // Hide empty columns
+  $.each($("td.cat_cell"), function(i, t) {
+    empty = 0;
+    var clues = $("td.clue").filter('[data-col="' + (i + 1) + '"]');
+    console.log($(this).data("col"));
+    $.each(clues, function(j, d) {
+      if ($(this).data("question") == "Unpicked clue") {
+        empty = empty + 1;
+      }
+      if (empty == 5) {
+        $("td.cat_cell").filter('[data-col="' + (i + 1) + '"]').hide();
+        $("td.clue").filter('[data-col="' + (i + 1) + '"]').hide();
+        console.log("empty=" + empty + "; col=" + i);
+      }
+    });
+    empty = 0;
+  });
   $(".game_container").show()
   var gt_width = $(".game_table").width();
   var w_width = $(window).width();

@@ -202,7 +202,16 @@ def getCategoryByDate(category):
   conn = sqlite3.connect(settings.DATABASE_)
   cur = conn.cursor()
   q = queries.CATEGORY_BY_DATE % (category)
-  results = cur.execute(q).fetchall()
+  try:
+    results = cur.execute(q).fetchall()
+  except:
+    if '"' in category:
+      q = queries.CATEGORY_BY_DATE.replace('"', "'")
+      results = cur.execute(q % category).fetchall()
+  finally:
+    if "'" in category:
+      q = queries.CATEGORY_BY_DATE.replace("'", '"')
+      results = cur.execute(q % category).fetchall()
   cols = list(set([r[CLUE_STRUCT["game_date"]] for r in results]))
   n_cols = len(cols)
   n_rounds = int(math.ceil(n_cols/6.))
