@@ -195,12 +195,14 @@ function drawCategoryGrid(grid, index, category) {
     $(".next_button").hide();
   }
   // Add vals for unpicked clues.
-  var empty = $("td:empty");
+  var empty = $("td");
   $.each(empty, function(n, e) {
-    $(this).data("question", "Unpicked clue");
-    $(this).data("answer", "Unknown");
-    $(this).data("dd", "0");
-    $(this).text("Unpicked");
+    if (!$(this).data("question")) {
+      $(this).data("question", "Unpicked clue");
+      $(this).data("answer", "Unknown");
+      $(this).data("dd", "0");
+      $(this).text("Unpicked");
+    }
   })
   $(".game_container").show()
   var gt_width = $(".game_table").width();
