@@ -187,7 +187,7 @@ function drawCategoryGrid(grid, index, category) {
   // Hide empty columns
   $.each($("tr.cat_cell"), function(i, t) {
     empty = 0;
-    $.each($("td.clue").filter('[data-col=' + i + ']'), funciton(j, d) {
+    $.each($("td.clue").filter('[data-col="' + i + '"]'), funciton(j, d) {
       if ($(this).innerHTML == '') {
         empty++;
       }
