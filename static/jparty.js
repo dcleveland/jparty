@@ -198,7 +198,7 @@ function drawCategoryGrid(grid, index, category) {
   }
   // Add vals for unpicked clues.
   var clues = $("td.clue");
-  $.each(empty, function(n, e) {
+  $.each(clues, function(n, e) {
     if (!$(this).data("question")) {
       $(this).data("question", "Unpicked clue");
       $(this).data("answer", "Unknown");
