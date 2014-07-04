@@ -174,12 +174,14 @@ function drawCategoryGrid(grid, index, category) {
     var row_index = 1;
     for (c in clues[col]) {
       var clue = clues[col][c];
-      var cell = $("td.clue").filter('[data-row="' + row_index + '"][data-col="'
+      if (clue) {
+        var cell = $("td.clue").filter('[data-row="' + row_index + '"][data-col="'
                                      + col_index + '"]')
       cell.text("$" + clue[4]);
       cell.data("question", clue[2]);
       cell.data("answer", clue[3]);
-      cell.data("data-dd=", clue[6]);
+      cell.data("data-dd=", clue[6]);  
+      }
       row_index += 1;
     };
     col_index += 1;
@@ -195,7 +197,7 @@ function drawCategoryGrid(grid, index, category) {
     $(".next_button").hide();
   }
   // Add vals for unpicked clues.
-  var empty = $("td.clue");
+  var clues = $("td.clue");
   $.each(empty, function(n, e) {
     if (!$(this).data("question")) {
       $(this).data("question", "Unpicked clue");
