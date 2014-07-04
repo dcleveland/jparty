@@ -250,6 +250,9 @@ def dates():
   data = GetDates()
   return json.dumps(data)
 
+@app.route("/layout")
+def layout():
+  return render_template("test.html", dates=GetDates())
 
 # Handler to return search results for a category search.
 @app.route("/search/q=<query>")

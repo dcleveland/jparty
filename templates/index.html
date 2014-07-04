@@ -21,12 +21,12 @@
         + '<option class="round" value="2">2</option>'
         + '<option class="round" value="3">3</option>'
         + '</select>'
-        + '<input class="show_round" type="submit" value="View round"></div>'
+        + '<input class="show_round button" type="submit" value="View round"></div>'
       $(".controls").html(opts);
       $(".controls").append('<div class="category_form">'
         + '<p class="form_title">Search by category</p>'
         + '<input type="text" class="search" value="Enter category search term"></input>'
-        + '<input class="search_categories" type="submit" value="Search">'
+        + '<input class="search_categories button" type="submit" value="Search">'
         + '</div>');
       // bind click functions for search/view buttons
       $(".show_round").on("click", function() {
@@ -54,7 +54,8 @@
 <body>
   <div class="controls"></div>
   <div class="error_msg_div" style="display: none;"><div class="error_msg"><a style="width: 100%" class="clear_err">Clear</a></div></div>
-  <div class="game_container" style="height: 100%; width: 100%"></div>
+  <div class="button_container"><div class="next_button" style="display:none;">Show More</div></div>
+  <div class="game_container"></div>
   <!-- <div class="display"></div> -->
     <!-- <div class="next_button"><button>Next</button</div> -->
   </div>

@@ -47,24 +47,10 @@ function setLinks() {
   // Function to set click functionality on clue boxes and the question/answer
   // display box.
   $(".clue").on("click", function(){
-    qhtml = '<p class="q_display">' + $(this).data("question")
-            + '<br><button class="show_ans" data-answer="'
-            + $(this).data("answer")
-            + '">Show Answer</button><br>'
-            + '<p class="answer" ' + 'style="display: none">' 
-            + $(this).data("answer").replace(/\\'/g, "'") + '</p></p></div>'
+    qhtml = '<div class="q_display">' + $(this).data("question") + "</div>"
+            + '<div class="show_ans" data-answer="' + $(this).data("answer") + '">Show Answer</div>'
+            + '<div class="answer" ' + 'style="display: none">' + $(this).data("answer").replace(/\\'/g, "'") + '</div></div>'
     $(".display").html(qhtml);
-    $(".display").css("left", "0px !important");
-    // Set position of the clue/answer tags based on the width of the table
-    var t = $(".game_table").height();
-    $(".q_display").css("top", t);
-    var w = ($(".game_table").width() - $(".q_display").width())/2;
-    $(".q_display").css("left", w);
-    $(".q_display").css("position", "absolute");
-    var a_w = ($(".game_table").width() - $(".answer").width())/2;
-    $(".answer").css("top", t + 100);
-    $(".answer").css("left", a_w);
-    // Remove text when a clue is picked.
     $(this).text("");
     $(this).css("background", "blue");
     if ($(this).data("dd") == "1") {
@@ -72,7 +58,7 @@ function setLinks() {
     }
     // bind click function for the show answer button.
     $(".show_ans").on("click", function() {
-      $(".answer").css("display", "block");
+      $(".answer").show();
     });
   });
 }
@@ -116,6 +102,9 @@ function doSearch(query) {
   // clear game table so that old clues doen't show up again.
   $(".game_table").html("");
   $.removeData($(".game_container")[0]);
+  $.removeData($(".next_button")[0]);
+  $(".next_button").unbind("click");
+  $(".next_button").hide();
   if (query == "Enter category search term") {
     showSearchError();
     $(".error_msg_div").css("left", ($(window).width()
@@ -155,7 +144,7 @@ function drawCategoryGrid(grid, index, category) {
     categories have varying numbers of available clues. E.g. "Math" has 98 clues
     but something less common may only have 5.
   */
-  $(".game_container").css("width", "100%");
+  // $(".game_container").css("width", "100%");
   var c_width = $(".game_container").width();
   clues = $.parseJSON($(".game_container").data("grid_" + index));
   ncols = clues.length
@@ -176,7 +165,6 @@ function drawCategoryGrid(grid, index, category) {
   }
   html += '</table><div class="display"></div>'
   $(".game_container").html(html);
-  $(".game_container").append('<div class="next_button"><button>Next</button></div>');
   var col_index = 1;
   for (col in clues) {
     var row_index = 1;
@@ -191,16 +179,6 @@ function drawCategoryGrid(grid, index, category) {
       row_index += 1;
     };
     col_index += 1;
-  }
-  if ($(".game_container").data("grid_" + (index + 1))) {
-    $(".next_button").show();
-    $(".next_button").on("click", function() {
-      var next_grid = $(".game_container").data("grid_" + index + 1);
-      drawCategoryGrid(next_grid, index + 1 , category);
-    });
-  }
-  else {
-    $(".next_button").hide();
   }
   // Add vals for unpicked clues.
   var clues = $("td.clue");
@@ -229,22 +207,28 @@ function drawCategoryGrid(grid, index, category) {
     });
     empty = 0;
   });
+  // Display the next button if necessary
+  if ($(".game_container").data("grid_" + (index + 1))) {
+    $(".next_button").show();
+    $(".next_button").on("click", function() {
+      var next_grid = $(".game_container").data("grid_" + index + 1);
+      drawCategoryGrid(next_grid, index + 1 , category);
+    });
+  }
+  else {
+    $(".next_button").hide();
+  }
   $(".game_container").show()
-  var gt_width = $(".game_table").width();
-  var w_width = $(window).width();
-  console.log()
-  var l_adjust = (w_width - gt_width)/2
-  $(".game_container").css("left", l_adjust);
-  $(".game_container").width(c_width - $(".game_table").width());
-  var next_left = ($(window).width() - $(".game_table").width())/4 + $(".game_table").width();
-  var next_top = ($(".game_table").offset().top + $(".game_table").height()/2 -$(".next_button").height())/2
-  $(".next_button").css("left", next_left);
-  $(".next_button").css("top", next_top);
-  $(".display").html("");
+  $(".display").html("")
+  $(".next_button").text("Show More");
+  $(".next_button").css("margin-right", (($(window).width() - $(".game_table").width())/4 + $(".next_button").width())/2);
+  $(".next_button").css("top", $(window).height()/2 - $(".controls").height() + $(".next_button").height()/2);
   setLinks();
 }
 
 function showCategory(category) {
+  $.removeData($(".game_container")[0]);
+  // $.removeData($(".next_button")[0])
   $(".search_results").hide();
   var req = $.ajax({url: '/cat_grids/c=' + category, async: false});
   category = category
@@ -302,23 +286,19 @@ function drawTable(data, round) {
   };
   html += '</table><div class="display"></div>'
   container.html(html);
-  container.append('<div class="next_button"><button>Next</button></div>');
-  container.width(c_width - $(".game_table").width());
-  $(".next_button").hide();
-  var next_left = ($(window).width() - $(".game_table").width())/4 + $(".game_table").width();
-  var next_top = ($(".game_table").offset().top + $(".game_table").height()/2 -$(".next_button").height())/2
-  $(".next_button").css("left", next_left);
-  $(".next_button").css("top", next_top);
-  c_width = $(".game_table").width();
-  w_width = $(window).width();
-  l_adjust = (w_width - c_width)/2
-  $(".game_container").css("left", l_adjust);
+  $(".next_button").text("Next Round");
+  $(".next_button").css("margin-right", (($(window).width() - $(".game_table").width())/4 + $(".next_button").width())/2);
+  $(".next_button").css("top", $(window).height()/2 - $(".controls").height() + $(".next_button").height()/2);
   $(".display").html("");
   setLinks();
 }
 
 
 function showGame(game_date, round) {
+  $.removeData($(".game_container")[0]);
+  $.removeData($(".next_button")[0]);
+  $(".next_button").unbind("click");
+  $(".next_button").hide();
   $(".game_container").css("width", "100%");
   if(game_date == "Select a date") {
     showDateError();

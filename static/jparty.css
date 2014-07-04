@@ -35,24 +35,22 @@ tr.categories td {
 .game_container {
   display: block;
   width: 100%;
-  height: 100%;
-  margin-top: 20px;
+  height: intrinsic;
+  margin: auto;
   text-align: center;
-  position: absolute;
+  margin-top: 40px;
+  float:left;
+  padding-bottom: 100px;
 }
 
 .game_table {
-  position: absolute;
-}
-
-.next_button {
-  position: absolute;
-  height: auto;
+  margin: auto;
+  text-align: center;
+  width: intrinsic;
 }
 
 .cat_cell {
   color: yellow;
-  
   padding: 5px;
   margin: 0px !important;
 }
@@ -86,33 +84,35 @@ a.clear_err {
 
 .display {
   height: 100%;
-  margin-top: 40px;
   display: block;
-  margin-left: 0% !important;
+  margin: auto;
+  text-align: center;
 }
 
 .q_display {
   font-size: 16pt;
   font-family: 'Oswald', sans-serif;
   font-weight: lighter;
-  position: absolute;
   text-align: center;
   color: #e0b000;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .answer {
   color: #e0b000;
-  position: absolute;
   font-size: 16pt;
   text-align: center;
   text-transform: capitalize;
   font-family: 'Oswald', sans-serif;
-  margin-top: 40px;
+  margin-top: 20px;
+  /*margin: auto;*/
 }
 
+
 .show_ans {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: auto;
+  width: intrinsic;
   background-color: blue;
   color: #e0b000;
   font-size: 16pt;
@@ -124,24 +124,50 @@ a.clear_err {
 }
 
 .show_ans:hover {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: auto;
+  width: intrinsic;
   background-color: #e0b000;
   color: blue;
   font-size: 16pt;
   line-height: 20pt;
   border-radius: 10px;
-  border: 1px solid #e0b000;
+  border: 2px solid #e0b000;
   padding: 10px;
 }
 
-button:active {
-  outline: none;
-  border: none;
+.button_container {
+  float: right;
+  height: 0px;
 }
 
-button:focus {
-  outline:0;
+.next_button {
+  border: none;
+  border-radius: 10px;
+  background: blue;
+  color: #e0b000;
+  font-size: 16pt;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  float: right;
+  height: auto;
+  display: inline;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.next_button:hover {
+  border: none;
+  border-radius: 10px;
+  background: #e0b000;
+  color: blue;
+  font-size: 16pt;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  float: right;
+  height: auto;
+  display: inline;
+  padding: 5px;
+  cursor: pointer;
 }
 
 .form_title {
@@ -169,7 +195,9 @@ select {
   background: blue;
   border: none;
   margin: 5px;
+  font-size: 10pt;
   border-radius: none;
+  padding: 5px;
 }
 
 select:active {
@@ -187,11 +215,34 @@ input {
   background: blue;
   border: none;
   margin: 5px;
+  padding: 5px;
+  line-height: 10pt;
+  font-size: 10pt;
+}
+
+input.button {
+  color: #e0b000;
+  background: blue;
+  border: none;
+  border-radius: 5px;
+  font-size: 10pt;
+  margin: 5px;
+  padding: 5px;
+}
+
+input.button:hover {
+  color: blue;
+  background: #e0b000;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 10pt;
+  padding: 4px;
 }
 
 input.search {
   width: 300px;
-  line-height: 14pt;
+  line-height: 12pt;
 }
 
 input:focus {
@@ -204,14 +255,6 @@ input:active {
   border: none;  
 }
 
-button {
-  border: none;
-  border-radius: 0px;
-  background: blue;
-  color: #e0b000;
-  font-size: 16pt;
-  font-family: 'Oswald', sans-serif;
-}
 
 .search_results {
   font-family: 'Oswald', sans-serif;
