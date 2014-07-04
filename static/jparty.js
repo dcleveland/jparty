@@ -153,7 +153,7 @@ function drawCategoryGrid(grid, index, category) {
   ncols = clues.length
   var html = '<table class="game_table"><tr class="categories">';
   for (i=0; i<6; i++) {
-    html += '<td class="cat_cell">' + category + '</td>';
+    html += '<td class="cat_cell" data-col="' + i + '">' + category + '</td>';
   }
   html += "</tr>"
   // Draw all cells in a normal sized grid. We'll hide unused ones later.
@@ -172,11 +172,15 @@ function drawCategoryGrid(grid, index, category) {
   var col_index = 1;
   for (col in clues) {
     var row_index = 1;
+    if (clues[col] == [[],[],[],[].[]]) {
+      $(".tr").filter("[data-col=" + col_index).hide();
+      break;
+    }
     for (c in clues[col]) {
       var clue = clues[col][c];
-      if (clue) {
-        var cell = $("td.clue").filter('[data-row="' + row_index + '"][data-col="'
+      var cell = $("td.clue").filter('[data-row="' + row_index + '"][data-col="'
                                      + col_index + '"]')
+      if (clue) {
       cell.text("$" + clue[4]);
       cell.data("question", clue[2]);
       cell.data("answer", clue[3]);
