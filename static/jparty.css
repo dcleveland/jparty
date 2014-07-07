@@ -1,3 +1,15 @@
+table {
+    border-collapse: collapse;
+}
+
+body {
+  background: #1a1a1a;
+}
+
+input.date {
+  width: 250px;
+}
+
 .clue {
   text-align: center;
   height: 80px;
@@ -32,6 +44,12 @@ tr.categories td {
   margin: 0px !important;
 }
 
+.cat_cell {
+  color: yellow;
+  padding: 5px;
+  margin: 0px !important;
+}
+
 .game_container {
   display: block;
   width: 100%;
@@ -48,31 +66,6 @@ tr.categories td {
   text-align: center;
   width: intrinsic;
 }
-
-.cat_cell {
-  color: yellow;
-  padding: 5px;
-  margin: 0px !important;
-}
-
-table {
-    border-collapse: collapse;
-}
-
-
-body {
-  /*background: #4c4b4c;*/
-  background: #1a1a1a;
-}
-
-input.date {
-  width: 250px;
-}
-
-/*.error_msg {
-  color: red;
-  font-weight: bold;
-}*/
 
 a.clear_err {
   cursor: pointer;
@@ -106,9 +99,7 @@ a.clear_err {
   text-transform: capitalize;
   font-family: 'Oswald', sans-serif;
   margin-top: 20px;
-  /*margin: auto;*/
 }
-
 
 .show_ans {
   margin: auto;
@@ -121,6 +112,7 @@ a.clear_err {
   border: 2px solid blue;
   font-family: 'Oswald', sans-serif;
   padding: 10px;
+  cursor: pointer;
 }
 
 .show_ans:hover {
@@ -133,6 +125,7 @@ a.clear_err {
   border-radius: 10px;
   border: 2px solid #e0b000;
   padding: 10px;
+  cursor: pointer;
 }
 
 .button_container {
@@ -254,7 +247,6 @@ input:active {
   outline: none;
   border: none;  
 }
-
 
 .search_results {
   font-family: 'Oswald', sans-serif;
